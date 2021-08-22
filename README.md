@@ -22,3 +22,13 @@ that a highlight is detected in. Each file directory is then divided by page,
 with those files containing PNG clips of the highlights. There is an
 `index.html` file that contains the document titles followed by all of the
 embedded image highlights.
+
+# Future Plans
+ 1. Clean up code
+ 1. Add tests
+ 1. Add cli
+ 1. Package
+ 1. Put on pypi
+ 1. Stitch clips together
+ 1. OCR to make highlights indexable/searchable
+ 1. Add GUI
