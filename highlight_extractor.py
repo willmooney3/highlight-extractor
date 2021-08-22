@@ -39,8 +39,16 @@ if annotations:
         annotation_index.write("<ul>\n")
         for doc, annots in annotations.items():
             annotation_index.write(f"<li>{doc}</li>\n<ul>\n")
+            current_page = -1
             for highlight in annots:
-                annotation_index.write(f"<li><img src=\"{doc}/{highlight['page']}/{highlight['topLeft'][0]}_{highlight['topLeft'][1]}_{highlight['bottomRight'][0]}_{highlight['bottomRight'][1]}.png\"></li>")
+                if current_page < 0:
+                    annotation_index.write(f"<li>{highlight['page']}</li><ul>")
+                    current_page = highlight['page']
+                elif highlight['page'] != current_page:
+                    annotation_index.write(f"</ul>\n<li>{highlight['page']}</li>\n<ul>\n")
+                    current_page = highlight['page']
+                annotation_index.write(f"<li><img src=\"{doc}/{highlight['page']}/{highlight['topLeft'][0]}_{highlight['topLeft'][1]}_{highlight['bottomRight'][0]}_{highlight['bottomRight'][1]}.png\"></li>\n")
+            annotation_index.write("</ul>\n")
             annotation_index.write("</ul>\n")
         annotation_index.write("</ul>\n")
         annotation_index.write("</body></html>")
