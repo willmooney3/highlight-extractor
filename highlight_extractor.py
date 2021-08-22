@@ -3,6 +3,10 @@ import pathlib
 
 import fitz
 
+
+PADDING = 7
+
+
 annotations = {}
 for pdf in iglob("*.pdf"):
     with fitz.open(pdf) as doc:
@@ -28,8 +32,8 @@ for pdf in iglob("*.pdf"):
                         # Calculate new rect: Need to add space around to ensure all text is fully
                         # captured
                         new_rect = fitz.Rect(
-                            fitz.Point(tl_x - 5, tl_y - 5),
-                            fitz.Point(br_x + 5, br_y + 5)
+                            fitz.Point(tl_x - PADDING, tl_y - PADDING),
+                            fitz.Point(br_x + PADDING, br_y + PADDING)
                         )
                         highlight = page.get_pixmap(clip=new_rect)
                         highlight.save(f"annotations/{pdf}/{page.number}/{tl_x}_{tl_y}_{br_x}_{br_y}.png")
