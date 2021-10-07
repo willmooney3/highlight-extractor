@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "highlight-extractor"
+version = "0.1.0"
+description = "Extracts freeform highlights made in PDFs in eReader devices."
+readme = "README.md"
+authors = ["Will Mooney <will.mooney.3@gmail.com>"]
+license = "MIT"
+homepage = "https://github.com/willmooney3/highlight-extractor"
+repository = "https://github.com/willmooney3/highlight-extractor"
+documentation = "https://github.com/willmooney3/highlight-extractor"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+PyMuPDF = "^1.18.19"
+pytesseract = "^0.3.8"
+click = "^8.0.3"
+
+[tool.poetry.dev-dependencies]
+black = "^21.9b0"
+flake8 = "^4.0.1"
+
+[tool.black]
+py36 = true
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | _build
+  | build
+  | dist
+  | blib2to3
+  | tests/data
+)/
+'''
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project.entry-points.cli]
+highlight-extractor = "highlight_extractor.cli:start"
